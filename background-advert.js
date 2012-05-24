@@ -1,14 +1,19 @@
 //Constructor function
-function BackgroundAd(elem, contentContainer, marginThreshold, linkUrl, backgroundSrc, backgroundColour){
-  this.elem = elem;
-  this.contentContainer = contentContainer;
-  this.marginThreshold = marginThreshold;
-  this.linkUrl = linkUrl;
-  this.backgroundSrc = "url("+backgroundSrc+")";
-  this.backgroundColour = backgroundColour;
-  this.positionCriteria = 'no-repeat 50% 0% fixed';
-  this.backgroundAdStyle = this.backgroundColour+" "+this.backgroundSrc+" "+this.positionCriteria;
-  this.init();
+function BackgroundAd(params){
+  try{
+    this.elem = params.elem;
+    this.contentContainer = params.contentContainer;
+    this.marginThreshold = params.marginThreshold;
+    this.linkUrl = params.linkUrl;
+    this.backgroundSrc = "url("+params.backgroundSrc+")";
+    this.backgroundColour = params.backgroundColour;
+    this.positionCriteria = params.backgroundPosition;
+    this.backgroundAdStyle = this.backgroundColour+" "+this.backgroundSrc+" "+this.positionCriteria;
+    this.init();
+  }
+  catch(e){
+    window.console.log("Parameters missing or incorrect.\nError: "+e);
+  }
 }
 
 //Bind functions to mousemove and body.onclick
@@ -52,11 +57,11 @@ BackgroundAd.prototype.verifyMouseX = function (mouseX){
 
 //Get the mouse position
 BackgroundAd.prototype.getMouseX = function (event){
-var e = event || window.event;
-return e.screenX;
+  var e = event || window.event;
+  return (typeof e.pageX !== "undefined") ? e.pageX : (e.clientX+document.body.scrollLeft);
 };
 
-//Get an element's absolute position relative to the document. 
+//Get an element's absolute position relative to the document.
 //See: www.quirksmode.org/js/findpos.html
 BackgroundAd.prototype.findPos = function (obj) {
   var curleft, curtop;
@@ -72,10 +77,14 @@ BackgroundAd.prototype.findPos = function (obj) {
 
 //Instantiate the object on document.ready
 $(document).ready(function(){
-  var params = {};
-  params.bodyElement = document.getElementsByTagName("body")[0];
-  params.contentContainer = document.getElementById("heading");
-  params.destinationURL = 'http://houseandhome.com';
-  params.backgroundSrc = 'http://aka-cdn-ns.adtechus.com/apps/464/Ad2739664St3Sz16Sq21274055V1Id7/TheStar_70k.jpg';
-  testAd = new BackgroundAd( params.bodyElement, params.contentContainer, 10,   params.destinationURL, params.backgroundSrc, 'rgb(235, 123, 40)' );
+  var params = {
+    elem : document.getElementsByTagName("body")[0],
+    contentContainer : document.getElementById("heading"),
+    marginThreshold : 10,
+    linkUrl : 'http://houseandhome.com',
+    backgroundSrc : 'http://aka-cdn-ns.adtechus.com/apps/464/Ad2739664St3Sz16Sq21274055V1Id7/TheStar_70k.jpg',
+    backgroundPosition : 'no-repeat 50% 0% fixed',
+    backgroundColour : "rgb(235, 123, 40)"
+  };
+  testAd = new BackgroundAd(params);
 });
