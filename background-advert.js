@@ -1,4 +1,4 @@
-
+//Constructor function
 function BackgroundAd(elem, contentContainer, marginThreshold, linkUrl, backgroundSrc, backgroundColour){
   this.elem = elem;
   this.contentContainer = contentContainer;
@@ -11,6 +11,7 @@ function BackgroundAd(elem, contentContainer, marginThreshold, linkUrl, backgrou
   this.init();
 }
 
+//Bind functions to mousemove and body.onclick
 BackgroundAd.prototype.init = function(){
   this.contentContainerWidth = this.contentContainer.offsetWidth;
   this.elem.style.background=this.backgroundAdStyle;
@@ -32,10 +33,12 @@ BackgroundAd.prototype.init = function(){
   };
 };
 
+//Take user to destination URL
 BackgroundAd.prototype.goToDestination = function(){
   window.location = this.linkUrl;
 };
 
+//Ensure that the mouse's position is not over top of the content element (plus margin)
 BackgroundAd.prototype.verifyMouseX = function (mouseX){
   leftLimit = this.findPos(this.contentContainer).left-this.marginThreshold;
   rightLimit = (this.findPos(this.contentContainer).left)+this.contentContainerWidth+this.marginThreshold;
@@ -47,11 +50,14 @@ BackgroundAd.prototype.verifyMouseX = function (mouseX){
   }
 };
 
+//Get the mouse position
 BackgroundAd.prototype.getMouseX = function (event){
 var e = event || window.event;
 return e.screenX;
 };
 
+//Get an element's absolute position relative to the document. 
+//See: www.quirksmode.org/js/findpos.html
 BackgroundAd.prototype.findPos = function (obj) {
   var curleft, curtop;
   curleft = curtop = 0;
@@ -64,6 +70,7 @@ BackgroundAd.prototype.findPos = function (obj) {
   }
 };
 
+//Instantiate the object on document.ready
 $(document).ready(function(){
   var params = {};
   params.bodyElement = document.getElementsByTagName("body")[0];
