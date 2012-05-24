@@ -1,3 +1,17 @@
+//Instantiate the object on document.ready
+$(document).ready(function(){
+  var params = {
+    elem : document.getElementsByTagName("body")[0],
+    contentContainer : document.getElementById("heading"),
+    marginThreshold : 10,
+    linkUrl : 'http://houseandhome.com',
+    backgroundSrc : 'http://aka-cdn-ns.adtechus.com/apps/464/Ad2739664St3Sz16Sq21274055V1Id7/TheStar_70k.jpg',
+    backgroundPosition : 'no-repeat 50% 0% fixed',
+    backgroundColour : "rgb(235, 123, 40)"
+  };
+  testAd = new BackgroundAd(params);
+});
+
 //Constructor function
 function BackgroundAd(params){
   try{
@@ -74,17 +88,3 @@ BackgroundAd.prototype.findPos = function (obj) {
   return {left:curleft,right:curtop};
   }
 };
-
-//Instantiate the object on document.ready
-$(document).ready(function(){
-  var params = {
-    elem : document.getElementsByTagName("body")[0],
-    contentContainer : document.getElementById("heading"),
-    marginThreshold : 10,
-    linkUrl : 'http://houseandhome.com',
-    backgroundSrc : 'http://aka-cdn-ns.adtechus.com/apps/464/Ad2739664St3Sz16Sq21274055V1Id7/TheStar_70k.jpg',
-    backgroundPosition : 'no-repeat 50% 0% fixed',
-    backgroundColour : "rgb(235, 123, 40)"
-  };
-  testAd = new BackgroundAd(params);
-});
