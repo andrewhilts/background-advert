@@ -9,7 +9,7 @@ Use JavaScript to embed a clickable background image to a web page
             elem : document.getElementsByTagName("body")[0],
             contentContainer : document.getElementById("heading"),
             marginThreshold : 10,
-            linkUrl : 'http://houseandhome.com',
+            linkUrl : 'http://www.windmobile.ca',
             backgroundSrc : 'http://aka-cdn-ns.adtechus.com/apps/464/Ad2739664St3Sz16Sq21274055V1Id7/TheStar_70k.jpg',
             backgroundPosition : 'no-repeat 50% 0% fixed',
             backgroundColour : "rgb(235, 123, 40)"
